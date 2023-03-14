@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 import kotlin.random.Random
 
 
@@ -35,6 +36,13 @@ class GameFragment : Fragment() {
             txtTurn.text = "$playerName's Turn"
         }
 
+        val btnAnswer = view.findViewById<Button>(R.id.btnAnswer)
+        btnAnswer.setOnClickListener {
+            val txtAnswer =view.findViewById<TextInputEditText>(R.id.txtAnswer)
+            val playerAnswer =txtAnswer.text.toString()
+            val action = GameFragmentDirections.actionResultFragment(playerAnswer)
+            Navigation.findNavController(it).navigate(action)
+        }
 
         val btnBack = view.findViewById<Button>(R.id.btnBack)
         btnBack.setOnClickListener {
